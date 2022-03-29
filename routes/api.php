@@ -23,5 +23,5 @@ Route::prefix('flights')->group(function () {
     Route::get('/', [FlightsController::class, 'flights']);
     Route::get('/groups-available', [FlightsController::class, 'groupsAvailable']);
     Route::get('/lowest-price', [FlightsController::class, 'lowestPrice']);
-    Route::get('/informations', [FlightsController::class, 'informationsFlight']);
+    Route::get('/informations', [FlightsController::class, 'informations']);
 });
