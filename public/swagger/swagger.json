@@ -1,0 +1,53 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api de voos",
+        "version": "0.1"
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "summary": "Return all flights.",
+                "operationId": "aca8dfb4861192babc7b0bfd64e876f1",
+                "responses": {
+                    "200": {
+                        "description": "Retorna todos os voos"
+                    }
+                }
+            }
+        },
+        "/groups-available": {
+            "get": {
+                "summary": "Available groups apresentation",
+                "operationId": "26c0943a86d99f4ea2d059688733c4d7",
+                "responses": {
+                    "200": {
+                        "description": "Retorna o grupo de voos disponiveis para visualização"
+                    }
+                }
+            }
+        },
+        "/lowest-price": {
+            "get": {
+                "summary": "Lowest Price Flight",
+                "operationId": "31849cef2913062be3fc75dcc785fa69",
+                "responses": {
+                    "200": {
+                        "description": "Retorna o grupo com o menor preço"
+                    }
+                }
+            }
+        },
+        "/informations": {
+            "get": {
+                "summary": "All Informations Flight",
+                "operationId": "0f06a23423cb5d106180fd48e42f145a",
+                "responses": {
+                    "200": {
+                        "description": "Retorna todas as informações de voos, \n     *     grupos de voos, grupo com o menor preço e o identificador do grupo com o menor preço"
+                    }
+                }
+            }
+        }
+    }
+}

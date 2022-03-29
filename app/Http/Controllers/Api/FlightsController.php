@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
+/**
+ * @OA\Info(title="Api de voos", version="0.1")
+ */
+
 class FlightsController extends Controller
 {
 
@@ -23,23 +27,28 @@ class FlightsController extends Controller
 
     /**
      * Load all flights 123milhas.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     private function loadFlights()
     {
         $flights = Http::get("http://prova.123milhas.net/api/flights");
 
-        if (empty($flights)) {
-            return;
+        if (!empty($flights)) {
+            return json_decode($flights, true);
         }
 
-        return json_decode($flights, true);
+        return [];
     }
 
     /**
      * Return all flights.
      *
+     * @OA\Get(
+     *     path="/",
+     *     @OA\Response(response="200", description="Retorna todos os voos")
+     * )
+     * 
      * @return \Illuminate\Http\Response
      */
     public function flights()
@@ -121,9 +130,9 @@ class FlightsController extends Controller
     /**
      * Agrouped flights by price and order by lowest price
      *
-     * @return \Illuminate\Http\Response
+     * @return Array
      */
-    private function agroupFlights()
+    private function groupFlights()
     {
         $this->handleFlights();
         $formatFlights = $this->formatFlights();
@@ -144,7 +153,7 @@ class FlightsController extends Controller
                 $return = implode(',', $direcao['return']);
 
                 $groupData[$key] = [
-                    'id' => $key,
+                    'id' => $type.'G'.$key,
                     'type' => $type,
                     'going' => $going,
                     'return' => $return,
@@ -165,16 +174,21 @@ class FlightsController extends Controller
     }
 
     /**
-     * Flights available
+     * Available groups apresentation
      *
+     * @OA\Get(
+     *     path="/groups-available",
+     *     @OA\Response(response="200", description="Retorna o grupo de voos disponiveis para visualização")
+     * )
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function flightsAvailable()
+    public function groupsAvailable()
     {
         $flightsAvailable = [];
 
         foreach ($this->groupFlights() as $group) {
-            $flightsAvailable[] = sprintf("G%s (Valor Total R$ %s | idas[%s] | voltas[%s])", 
+            $flightsAvailable[] = sprintf("%s (Valor Total R$ %s | idas[%s] | voltas[%s])", 
                 $group['id'], $group['price'], $group['going'], $group['return']
             );
         }
@@ -183,18 +197,13 @@ class FlightsController extends Controller
     }
 
     /**
-     * Group Flights
-     *
-     * @return Array
-     */
-    public function groupFlights()
-    {
-        return $this->agroupFlights();
-    }
-
-    /**
      * Lowest Price Flight
      *
+     * @OA\Get(
+     *     path="/lowest-price",
+     *     @OA\Response(response="200", description="Retorna o grupo com o menor preço")
+     * )
+     * 
      * @return \Illuminate\Http\Response
      */
     public function lowestPrice()
@@ -205,19 +214,25 @@ class FlightsController extends Controller
 
     /**
      * All Informations Flight
-     *
+     * 
+     * @OA\Get(
+     *     path="/informations",
+     *     @OA\Response(response="200", description="Retorna todas as informações de voos, 
+     *     grupos de voos, grupo com o menor preço e o identificador do grupo com o menor preço")
+     * )
+     * 
      * @return \Illuminate\Http\Response
      */
     public function informationsFlight()
     {
         $flights = $this->flights;
-        $groupData = $this->groupFlights();
+        $groupFlights = $this->groupFlights();
         $lowestPriceFlight = $this->lowestPrice();
 
         return [
             'fligths' => $flights,
-            'groups' => $groupData,
-            'totalGroups' => count($groupData),
+            'groups' => $groupFlights,
+            'totalGroups' => count($groupFlights),
             'totalFlights' => count($flights),
             'cheapestPrice' => $lowestPriceFlight['price'],
             'cheapestGroup' => $lowestPriceFlight['id']
