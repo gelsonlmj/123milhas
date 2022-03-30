@@ -2,11 +2,12 @@
 
 Esse projeto disponibiliza apis para consultar voos, grupos de voos(ida/volta) disponíveis, grupo com o preço mais barato e informações gerais sobre os voos, grupos disponíveis e o grupo mais barato.
 
-## Montar ambiente
+## Tecnologias utilizadas
+- PHP 7.4.3
+- Laravel 8
+- Swagger
+
+## Instruções para subir o ambiente
 
 ## Rotas disponibilizadas
-
-- http://127.0.0.1/123milhas/public/api/flights
-- http://127.0.0.1/123milhas/public/api/flights/groups-available
-- http://127.0.0.1/123milhas/public/api/flights/lowest-price
-- http://127.0.0.1/123milhas/public/api/flights/informations
+http://127.0.0.1/swagger/#/
