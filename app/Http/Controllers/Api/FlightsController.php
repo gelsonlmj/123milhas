@@ -165,6 +165,12 @@ class FlightsController extends Controller
      *                      {"id":1,"cia":"GOL","fare":"1AF","flightNumber":"G3-1701","origin":"CNF","destination":"BSB","departureDate":"29/01/2021","arrivalDate":"29/01/2021","departureTime":"07:40","arrivalTime":"09:00","classService":3,"price":50,"tax":36,"outbound":1,"inbound":0,"duration":"1:20"},
      *                      {"id":2,"cia":"AZUL","fare":"1AF","flightNumber":"AD-1111","origin":"CNF","destination":"BSB","departureDate":"29/01/2021","arrivalDate":"29/01/2021","departureTime":"07:40","arrivalTime":"09:00","classService":3,"price":50,"tax":36,"outbound":1,"inbound":0,"duration":"1:20"}
      *                  },
+     *                  "groups":{
+     *                      {"id":"1AFG1","type":"1AF","going":"1,2,3","return":"9,10","price":200},
+     *                      {"id":"1AFG2","type":"1AF","going":"1,2,3,4,5,6","return":"9,10,11","price":250},
+     *                      {"id":"1AFG4","type":"1AF","going":"7","return":"9,10","price":270},
+     *                      {"id":"1AFG3","type":"1AF","going":"4,5,6,8","return":"9,10,11","price":300}
+     *                  },
      *                  "totalGroups":8,
      *                  "totalFlights":15,
      *                  "cheapestPrice":200,

@@ -284,6 +284,36 @@
                                                             "duration": "1:20"
                                                         }
                                                     ],
+                                                    "groups": [
+                                                        {
+                                                            "id": "1AFG1",
+                                                            "type": "1AF",
+                                                            "going": "1,2,3",
+                                                            "return": "9,10",
+                                                            "price": 200
+                                                        },
+                                                        {
+                                                            "id": "1AFG2",
+                                                            "type": "1AF",
+                                                            "going": "1,2,3,4,5,6",
+                                                            "return": "9,10,11",
+                                                            "price": 250
+                                                        },
+                                                        {
+                                                            "id": "1AFG4",
+                                                            "type": "1AF",
+                                                            "going": "7",
+                                                            "return": "9,10",
+                                                            "price": 270
+                                                        },
+                                                        {
+                                                            "id": "1AFG3",
+                                                            "type": "1AF",
+                                                            "going": "4,5,6,8",
+                                                            "return": "9,10,11",
+                                                            "price": 300
+                                                        }
+                                                    ],
                                                     "totalGroups": 8,
                                                     "totalFlights": 15,
                                                     "cheapestPrice": 200,
