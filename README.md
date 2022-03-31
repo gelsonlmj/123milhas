@@ -56,6 +56,11 @@ Instalação
     php artisan route:cache
     ```
 
+API
+--------------
+
+Para ter acesso a api basta acessar a seguinte url http://127.0.0.1/api/flights
+
 Swagger
 --------------
 
